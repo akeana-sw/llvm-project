@@ -1483,6 +1483,14 @@ def VFSQRT_V : VSQR_FV_VS2<"vfsqrt.v", 0b010011, 0b00000>;
 def VFREC7_V : VRCP_FV_VS2<"vfrec7.v", 0b010011, 0b00101>;
 }
 
+// Vector Floating-point Activation function Instruction
+let Uses = [FRM, VL, VTYPE], mayRaiseFPException = true in {
+def VFEXP_V     : VRCP_FV_VS2<"vfexp.v",     0b010011, 0b11001>;
+def VFSIGMOID_V : VRCP_FV_VS2<"vfsigmoid.v", 0b010011, 0b11010>;
+def VFGELU_V    : VRCP_FV_VS2<"vfgelu.v",    0b010011, 0b11011>;
+def VFLN_V      : VRCP_FV_VS2<"vfln.v",      0b010011, 0b11100>;
+}
+
 let mayRaiseFPException = true in
 def VFRSQRT7_V : VRCP_FV_VS2<"vfrsqrt7.v", 0b010011, 0b00100>;
 

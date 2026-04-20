@@ -6500,6 +6500,16 @@ defm PseudoVFSGNJN : VPseudoVSGNJ_VV_VF;
 defm PseudoVFSGNJX : VPseudoVSGNJ_VV_VF;
 
 //===----------------------------------------------------------------------===//
+// 2.2.11. Akeana Vector Floating-Point Activation Function Accelerators
+//===----------------------------------------------------------------------===//
+let mayRaiseFPException = true in {
+defm PseudoVFEXP     : VPseudoVRCP_V;
+defm PseudoVFSIGMOID : VPseudoVRCP_V;
+defm PseudoVFGELU    : VPseudoVRCP_V;
+defm PseudoVFLN      : VPseudoVRCP_V;
+}
+
+//===----------------------------------------------------------------------===//
 // 13.13. Vector Floating-Point Compare Instructions
 //===----------------------------------------------------------------------===//
 let mayRaiseFPException = true in {
@@ -7132,6 +7142,14 @@ defm : VPatBinaryV_VV_VX<"int_riscv_vfsgnjn", "PseudoVFSGNJN", AllFloatVectors,
                          isSEWAware=1>;
 defm : VPatBinaryV_VV_VX<"int_riscv_vfsgnjx", "PseudoVFSGNJX", AllFloatVectors,
                          isSEWAware=1>;
+
+//===----------------------------------------------------------------------===//
+// 2.2.11. Akeana Vector Floating-Point Activation Function Accelerators
+//===----------------------------------------------------------------------===//
+defm : VPatUnaryV_V<"int_riscv_vfexp",     "PseudoVFEXP",     AllFloatVectors, isSEWAware=1>;
+defm : VPatUnaryV_V<"int_riscv_vfsigmoid", "PseudoVFSIGMOID", AllFloatVectors, isSEWAware=1>;
+defm : VPatUnaryV_V<"int_riscv_vfgelu",    "PseudoVFGELU",    AllFloatVectors, isSEWAware=1>;
+defm : VPatUnaryV_V<"int_riscv_vfln",      "PseudoVFLN",      AllFloatVectors, isSEWAware=1>;
 
 //===----------------------------------------------------------------------===//
 // 13.13. Vector Floating-Point Compare Instructions

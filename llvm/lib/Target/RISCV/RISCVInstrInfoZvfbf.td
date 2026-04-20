@@ -375,6 +375,14 @@ let mayLoad = 0, mayStore = 0, hasSideEffects = 0 in {
 
 defm PseudoVFSLIDE1UP_ALT   : VPseudoVSLD1_VF<"@earlyclobber $rd">;
 defm PseudoVFSLIDE1DOWN_ALT : VPseudoVSLD1_VF;
+
+let mayRaiseFPException = true in {
+defm PseudoVFEXP_ALT     : VPseudoVRCP_V_BF16;
+defm PseudoVFSIGMOID_ALT : VPseudoVRCP_V_BF16;
+defm PseudoVFGELU_ALT    : VPseudoVRCP_V_BF16;
+defm PseudoVFLN_ALT      : VPseudoVRCP_V_BF16;
+}
+
 } // Predicates = [HasVInstructionsBF16], AltFmtType = IS_ALTFMT
 
 //===----------------------------------------------------------------------===//
@@ -581,4 +589,14 @@ defm : VPatConversionVF_WF_BF16<"int_riscv_vfncvt_rod_f_f_w", "PseudoVFNCVT_ROD_
                                 isSEWAware=1>;
 defm : VPatBinaryV_VX<"int_riscv_vfslide1up", "PseudoVFSLIDE1UP_ALT", AllBF16Vectors>;
 defm : VPatBinaryV_VX<"int_riscv_vfslide1down", "PseudoVFSLIDE1DOWN_ALT", AllBF16Vectors>;
+
+defm : VPatUnaryV_V<"int_riscv_vfexp", "PseudoVFEXP_ALT",
+                       AllBF16Vectors, isSEWAware=1>;
+defm : VPatUnaryV_V<"int_riscv_vfsigmoid", "PseudoVFSIGMOID_ALT",
+                       AllBF16Vectors, isSEWAware=1>;
+defm : VPatUnaryV_V<"int_riscv_vfgelu", "PseudoVFGELU_ALT",
+                       AllBF16Vectors, isSEWAware=1>;
+defm : VPatUnaryV_V<"int_riscv_vfln", "PseudoVFLN_ALT",
+                       AllBF16Vectors, isSEWAware=1>;
+
 } // Predicates = [HasVInstructionsBF16]

@@ -1210,6 +1210,34 @@ defm vfmax : RVVFloatingBinBuiltinSet<HasBF=1>;
 defm vfsgnj  : RVVFloatingBinBuiltinSet<HasBF=1>;
 defm vfsgnjn : RVVFloatingBinBuiltinSet<HasBF=1>;
 defm vfsgnjx : RVVFloatingBinBuiltinSet<HasBF=1>;
+
+// Akeana
+// 2.2.11 AI instructions
+// Vector Activation Functions accelerators
+defm vfexp : RVVOutBuiltinSet<"vfexp", "fd", [["v", "v", "vv"]]>;
+let RequiredFeatures = ["zvfh"] in
+  defm vfexp : RVVOutBuiltinSet<"vfexp", "x", [["v", "v", "vv"]]>;
+let RequiredFeatures = ["zvfbfa"] in
+  defm vfexp : RVVOutBuiltinSet<"vfexp", "y", [["v", "v", "vv"]]>;
+
+defm vfsigmoid : RVVOutBuiltinSet<"vfsigmoid", "fd", [["v", "v", "vv"]]>;
+let RequiredFeatures = ["zvfh"] in
+  defm vfsigmoid : RVVOutBuiltinSet<"vfsigmoid", "x", [["v", "v", "vv"]]>;
+let RequiredFeatures = ["zvfbfa"] in
+  defm vfsigmoid : RVVOutBuiltinSet<"vfsigmoid", "y", [["v", "v", "vv"]]>;
+
+defm vfgelu : RVVOutBuiltinSet<"vfgelu", "fd", [["v", "v", "vv"]]>;
+let RequiredFeatures = ["zvfh"] in
+  defm vfgelu : RVVOutBuiltinSet<"vfgelu", "x", [["v", "v", "vv"]]>;
+let RequiredFeatures = ["zvfbfa"] in
+  defm vfgelu : RVVOutBuiltinSet<"vfgelu", "y", [["v", "v", "vv"]]>;
+
+defm vfln : RVVOutBuiltinSet<"vfln", "fd", [["v", "v", "vv"]]>;
+let RequiredFeatures = ["zvfh"] in
+  defm vfln : RVVOutBuiltinSet<"vfln", "x", [["v", "v", "vv"]]>;
+let RequiredFeatures = ["zvfbfa"] in
+  defm vfln : RVVOutBuiltinSet<"vfln", "y", [["v", "v", "vv"]]>;
+
 }
 defm vfneg_v : RVVPseudoVFUnaryBuiltin<"vfsgnjn", "fd">;
 let RequiredFeatures = ["zvfh"] in

@@ -1570,6 +1570,11 @@ let TargetPrefix = "riscv" in {
     defm vfclass : RISCVClassify;
 
     defm vfmerge : RISCVBinaryWithV0;
+
+    defm vfexp : RISCVUnaryAA;
+    defm vfsigmoid : RISCVUnaryAA;
+    defm vfgelu : RISCVUnaryAA;
+    defm vfln : RISCVUnaryAA;
   }
 
   defm vslideup : RVVSlide;

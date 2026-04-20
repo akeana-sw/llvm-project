@@ -528,6 +528,11 @@ static std::optional<unsigned> getOperandLog2EEW(const MachineOperand &MO) {
   case RISCV::VFRSQRT7_V:
   // Vector Floating-Point Reciprocal Estimate Instruction
   case RISCV::VFREC7_V:
+  // Akeana Vector Floating-Point Activation Function Accelerators
+  case RISCV::VFEXP_V:
+  case RISCV::VFSIGMOID_V:
+  case RISCV::VFGELU_V:
+  case RISCV::VFLN_V:
   // Vector Floating-Point MIN/MAX Instructions
   case RISCV::VFMIN_VF:
   case RISCV::VFMIN_VV:
